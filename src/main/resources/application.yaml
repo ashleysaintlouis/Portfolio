@@ -1,0 +1,60 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: portifolioprojetos
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER}
+
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 30000
+
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+  docker:
+    compose:
+      enabled: false
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+
+  file:
+    name: logs/minha-aplicacao.log
+
+api:
+  membros:
+    url: https://68dc1ec67cd1948060a9842b.mockapi.io/api/v1/membros
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
